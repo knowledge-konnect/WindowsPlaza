@@ -5,13 +5,14 @@ import Link from "next/link"
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
+import { getImagePath } from "@/lib/image-path"
 
 const products = [
   {
     title: "uPVC Casement Windows",
     description:
       "Classic hinged windows that open outward, offering excellent ventilation, security, and weatherproofing. Ideal for homes in all climates across India.",
-    image: "/images/upvc-windows.jpg",
+    image: getImagePath("/images/upvc-windows.jpg"),
     alt: "uPVC casement windows professionally installed in a modern home",
     features: ["Multi-point locking", "Double glazed", "Low maintenance"],
   },
@@ -19,7 +20,7 @@ const products = [
     title: "Aluminium Sliding Doors",
     description:
       "Sleek, space-saving sliding doors with slim aluminium profiles that maximise natural light. A popular choice for modern homes and apartments.",
-    image: "/images/aluminium-doors.jpg",
+    image: getImagePath("/images/aluminium-doors.jpg"),
     alt: "Premium aluminium sliding doors for modern homes",
     features: ["Slim sightlines", "Smooth glide system", "Powder coated"],
   },
@@ -27,7 +28,7 @@ const products = [
     title: "Sliding Windows",
     description:
       "Effortless horizontal sliding windows, perfect for apartments and villas that need easy operation without compromising on style or performance.",
-    image: "/images/sliding-windows.jpg",
+    image: getImagePath("/images/sliding-windows.jpg"),
     alt: "Sliding windows installation in a modern apartment",
     features: ["Easy operation", "Weather sealed", "Sound insulated"],
   },
@@ -35,7 +36,7 @@ const products = [
     title: "French Doors",
     description:
       "Timeless double-opening doors that add elegance and charm to any home, offering wide access to balconies, gardens, and patios year-round.",
-    image: "/images/french-doors.jpg",
+    image: getImagePath("/images/french-doors.jpg"),
     alt: "Elegant French doors for stylish homes and villas",
     features: ["Wide opening", "Classic design", "Energy efficient"],
   },

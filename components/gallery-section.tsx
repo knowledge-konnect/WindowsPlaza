@@ -2,30 +2,31 @@
 
 import Image from "next/image"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
+import { getImagePath } from "@/lib/image-path"
 
 const galleryImages = [
   {
-    src: "/images/hero-windows.jpg",
+    src: getImagePath("/images/hero-windows.jpg"),
     alt: "Modern living room with panoramic uPVC windows — Windows Plaza installation",
     span: "sm:col-span-2 sm:row-span-2",
   },
   {
-    src: "/images/upvc-windows.jpg",
+    src: getImagePath("/images/upvc-windows.jpg"),
     alt: "uPVC casement windows professionally installed in a contemporary home",
     span: "",
   },
   {
-    src: "/images/aluminium-doors.jpg",
+    src: getImagePath("/images/aluminium-doors.jpg"),
     alt: "Premium aluminium sliding doors — completed installation project",
     span: "",
   },
   {
-    src: "/images/sliding-windows.jpg",
+    src: getImagePath("/images/sliding-windows.jpg"),
     alt: "uPVC sliding windows installation in a modern apartment",
     span: "",
   },
   {
-    src: "/images/french-doors.jpg",
+    src: getImagePath("/images/french-doors.jpg"),
     alt: "Elegant French doors installed in a residential villa",
     span: "",
   },

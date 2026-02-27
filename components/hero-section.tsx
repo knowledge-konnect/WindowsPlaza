@@ -5,6 +5,7 @@ import Link from "next/link"
 import { ArrowRight, Shield, Leaf, Award, Star, Phone } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
+import { getImagePath } from "@/lib/image-path"
 
 export function HeroSection() {
   const { ref, isVisible } = useScrollAnimation(0.05)
@@ -23,7 +24,7 @@ export function HeroSection() {
       {/* Background image */}
       <div className="absolute inset-0 z-0">
         <Image
-          src="/images/hero-windows.jpg"
+          src={getImagePath("/images/hero-windows.jpg")}
           alt="Premium uPVC windows installed in a modern home showcasing Windows Plaza's expert craftsmanship"
           fill
           className="object-cover"
