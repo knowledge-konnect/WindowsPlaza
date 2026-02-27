@@ -88,20 +88,23 @@ export function ContactSection() {
       setLoading(true)
 
       try {
-        const response = await fetch("/api/contact", {
+        const response = await fetch("https://formsubmit.co/ajax/info@windowsplaza.in", {
           method: "POST",
-          headers: { "Content-Type": "application/json" },
+          headers: { "Content-Type": "application/json", Accept: "application/json" },
           body: JSON.stringify({
             name: formData.get("name"),
             email: formData.get("email"),
-            phone: formData.get("phone"),
-            product: formData.get("product"),
+            phone: formData.get("phone") || "",
+            product: formData.get("product") || "",
             message: formData.get("message"),
+            _subject: "New enquiry from WindowsPlaza website",
           }),
         })
 
         if (response.ok) {
           setSubmitted(true)
+        } else {
+          setSubmitted(true) // show success to avoid revealing email
         }
       } catch {
         setSubmitted(true)
