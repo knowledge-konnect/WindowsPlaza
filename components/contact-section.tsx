@@ -1,15 +1,15 @@
 "use client"
 
 import { useState, useCallback } from "react"
-import { Phone, Mail, Clock, Send, CheckCircle2 } from "lucide-react"
+import { Phone, Mail, Clock, MapPin, Send, CheckCircle2 } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Label } from "@/components/ui/label"
+import { BUSINESS_INFO } from "@/lib/constants/business"
+import { API_ENDPOINTS } from "@/lib/constants/api"
 
-const PHONE_NUMBER = "+91-9876543210"
-const PHONE_HREF = "tel:+919876543210"
-const EMAIL = "info@windowsplaza.in"
+const { phoneNumber: PHONE_NUMBER, phoneHref: PHONE_HREF, email: EMAIL } = BUSINESS_INFO
 
 const contactInfo = [
   {
@@ -23,6 +23,12 @@ const contactInfo = [
     title: "Email Us",
     details: [EMAIL],
     href: `mailto:${EMAIL}`,
+  },
+  {
+    icon: MapPin,
+    title: "Visit Us",
+    details: [BUSINESS_INFO.location.full],
+    href: "https://maps.google.com/maps?q=Rajula+Tallavalasa+Near+Thirumala+College+Bheemunipatnam+Visakhapatnam+Andhra+Pradesh+531162",
   },
   {
     icon: Clock,
@@ -88,7 +94,7 @@ export function ContactSection() {
       setLoading(true)
 
       try {
-        const response = await fetch("https://formsubmit.co/ajax/info@windowsplaza.in", {
+        const response = await fetch(API_ENDPOINTS.formSubmit, {
           method: "POST",
           headers: { "Content-Type": "application/json", Accept: "application/json" },
           body: JSON.stringify({
@@ -116,7 +122,7 @@ export function ContactSection() {
   )
 
   return (
-    <section id="contact" className="bg-card py-20 lg:py-28">
+    <section id="contact" className="bg-card py-14 lg:py-20">
       <div className="mx-auto max-w-7xl px-4 lg:px-8">
         <div className="mx-auto max-w-2xl text-center">
           <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/[0.08] px-4 py-1.5">
@@ -172,20 +178,29 @@ export function ContactSection() {
               })}
             </div>
 
-            {/* Google Map removed — general website serves multiple regions */}
-            <div className="rounded-xl border border-border bg-primary/[0.03] p-6 text-center">
-              <div className="flex flex-col items-center gap-3">
-                <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
-                  <Phone className="h-6 w-6 text-primary" />
-                </div>
-                <p className="text-sm font-semibold text-foreground">Let&apos;s talk about your project</p>
-                <p className="text-sm text-muted-foreground">Our experts are available Mon–Sat to help you choose the right windows and doors for your home.</p>
+            {/* Google Map */}
+            <div className="overflow-hidden rounded-xl border border-border shadow-sm">
+              <iframe
+                title="Windows Plaza — SP Builders and Traders, Visakhapatnam"
+                src="https://maps.google.com/maps?q=Rajula+Tallavalasa+Near+Thirumala+College+Bheemunipatnam+Visakhapatnam+Andhra+Pradesh+531162&z=15&output=embed"
+                width="100%"
+                height="240"
+                style={{ border: 0, display: "block" }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+              <div className="flex items-center justify-between bg-secondary/50 px-4 py-2.5">
+                <p className="text-xs text-muted-foreground">
+                  {BUSINESS_INFO.location.full}
+                </p>
                 <a
-                  href={PHONE_HREF}
-                  className="mt-2 inline-flex items-center gap-2 rounded-lg bg-primary px-5 py-2.5 text-sm font-semibold text-primary-foreground shadow-md shadow-primary/25 transition-all hover:shadow-lg hover:shadow-primary/35"
+                  href="https://maps.google.com/maps?q=Rajula+Tallavalasa+Near+Thirumala+College+Bheemunipatnam+Visakhapatnam+Andhra+Pradesh+531162"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="ml-3 shrink-0 text-xs font-medium text-primary hover:underline"
                 >
-                  <Phone className="h-4 w-4" />
-                  Call {PHONE_NUMBER}
+                  Open in Maps ↗
                 </a>
               </div>
             </div>

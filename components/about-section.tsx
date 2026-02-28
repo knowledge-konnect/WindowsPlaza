@@ -1,82 +1,82 @@
 "use client"
 
-import { CheckCircle2 } from "lucide-react"
+import { Volume2, Wind, Zap, Grid2x2, Leaf, CheckCircle2 } from "lucide-react"
 import { useScrollAnimation } from "@/hooks/use-scroll-animation"
 
-const stats = [
-  { number: "18+", label: "Years of Excellence" },
-  { number: "5,000+", label: "Homes Transformed" },
-  { number: "99%", label: "Client Satisfaction" },
-  { number: "10yr", label: "Product Warranty" },
-]
-
-const highlights = [
-  "Premium-grade uPVC and aluminium materials built for strength and longevity",
-  "Custom designs tailored to your home's architecture and style preferences",
-  "Professional installation by certified and experienced technicians",
-  "Dedicated after-sales support with a comprehensive service guarantee",
+const benefits = [
+  {
+    icon: Volume2,
+    title: "Soundproof Comfort",
+    description:
+      "Enjoy peaceful living. Our multi-chamber uPVC profiles reduce street noise, traffic sounds, and neighbourhood disturbances — so your home stays a quiet sanctuary.",
+  },
+  {
+    icon: Wind,
+    title: "Dust Resistant Sealing",
+    description:
+      "Advanced brush seals and gaskets keep dust, sand, and fine particles out. Ideal for coastal and city environments where dust is a daily concern.",
+  },
+  {
+    icon: Zap,
+    title: "Energy Efficient Frames",
+    description:
+      "uPVC is a natural insulator. Our windows reduce heat transfer, keeping your home cooler in summer and warmer in winter — cutting air-conditioning bills significantly.",
+  },
+  {
+    icon: Grid2x2,
+    title: "Mosquito Mesh Option",
+    description:
+      "Add integrated insect mesh screens to any window design. Keep mosquitoes and insects out while enjoying fresh coastal breeze — no compromises on ventilation.",
+  },
+  {
+    icon: Leaf,
+    title: "Maintenance Free Material",
+    description:
+      "uPVC never needs painting, oiling, or polishing. It does not rust, rot, or warp. A simple wipe-clean surface that looks brand new for decades.",
+  },
+  {
+    icon: CheckCircle2,
+    title: "Long-Lasting Durability",
+    description:
+      "Engineered to withstand coastal humidity and salt air. Our uPVC profiles are UV-stabilised and carry a long-term structural warranty.",
+  },
 ]
 
 export function AboutSection() {
-  const { ref, isVisible } = useScrollAnimation()
+  const { ref: headerRef, isVisible: headerVisible } = useScrollAnimation()
+  const { ref: gridRef, isVisible: gridVisible } = useScrollAnimation(0.1)
 
   return (
-    <section id="about" className="bg-card py-24 lg:py-32">
-      <div ref={ref} className="mx-auto max-w-7xl px-4 lg:px-8">
-        <div className={`grid items-center gap-14 lg:grid-cols-2 lg:gap-20 ${isVisible ? "animate-fade-in-up" : "opacity-0"}`}>
-          {/* Left - Stats */}
-          <div>
-            <div className="grid grid-cols-2 gap-5">
-              {stats.map((stat) => (
-                <div
-                  key={stat.label}
-                  className="group rounded-2xl border border-border bg-background p-6 text-center shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/10"
-                >
-                  <p className="text-4xl font-extrabold tracking-tight text-primary lg:text-5xl">
-                    {stat.number}
-                  </p>
-                  <p className="mt-2 text-sm font-medium text-muted-foreground">
-                    {stat.label}
-                  </p>
-                </div>
-              ))}
-            </div>
+    <section id="benefits" className="bg-card py-16 lg:py-24">
+      <div className="mx-auto max-w-7xl px-4 lg:px-8">
+        <div ref={headerRef} className={`mx-auto max-w-2xl text-center ${headerVisible ? "animate-fade-in-up" : "opacity-0"}`}>
+          <div className="mx-auto inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/[0.08] px-4 py-1.5">
+            <div className="h-1.5 w-1.5 rounded-full bg-primary" />
+            <span className="text-xs font-semibold uppercase tracking-wider text-primary">Benefits</span>
           </div>
+          <h2 className="mt-4 text-balance text-3xl font-bold tracking-tight text-foreground lg:text-4xl">
+            Live Better with uPVC Windows
+          </h2>
+          <div className="heading-accent-center" />
+          <p className="mt-4 text-base leading-relaxed text-muted-foreground">
+            More than just windows — a smarter, healthier, and more comfortable
+            home environment for your family.
+          </p>
+        </div>
 
-          {/* Right - Text */}
-          <div>
-            <div className="inline-flex items-center gap-2 rounded-full border border-primary/30 bg-primary/[0.08] px-4 py-1.5">
-              <div className="h-1.5 w-1.5 rounded-full bg-primary" />
-              <span className="text-xs font-semibold tracking-wider text-primary uppercase">
-                About Windows Plaza
-              </span>
+        <div ref={gridRef} className={`mt-16 grid gap-6 sm:grid-cols-2 lg:grid-cols-3 stagger-children ${gridVisible ? "is-visible" : ""}`}>
+          {benefits.map((benefit) => (
+            <div key={benefit.title}
+              className="group flex gap-5 rounded-2xl border border-border bg-background p-6 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-primary/20 hover:shadow-xl hover:shadow-primary/[0.07]">
+              <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-primary/[0.08] transition-all duration-300 group-hover:bg-primary/15 group-hover:scale-110">
+                <benefit.icon className="h-6 w-6 text-primary" />
+              </div>
+              <div>
+                <h3 className="text-base font-semibold text-foreground">{benefit.title}</h3>
+                <p className="mt-1.5 text-sm leading-relaxed text-muted-foreground">{benefit.description}</p>
+              </div>
             </div>
-            <h2 className="mt-4 text-balance text-3xl font-bold tracking-tight text-foreground lg:text-4xl">
-              India&apos;s Trusted Window &amp; Door Experts for Over 18 Years
-            </h2>
-            <div className="heading-accent" />
-            <p className="mt-5 text-base leading-relaxed text-muted-foreground">
-              Windows Plaza has been serving homeowners and businesses across
-              India since 2005. We combine cutting-edge technology with expert
-              craftsmanship to deliver premium uPVC and aluminium solutions that
-              stand the test of time. Our commitment to quality, innovation, and
-              customer satisfaction has made us one of the most trusted names in
-              windows and doors nationwide.
-            </p>
-
-            <ul className="mt-8 flex flex-col gap-4">
-              {highlights.map((item) => (
-                <li key={item} className="flex items-start gap-3">
-                  <div className="mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-primary/10">
-                    <CheckCircle2 className="h-4 w-4 text-primary" />
-                  </div>
-                  <span className="text-sm font-medium leading-relaxed text-foreground">
-                    {item}
-                  </span>
-                </li>
-              ))}
-            </ul>
-          </div>
+          ))}
         </div>
       </div>
     </section>

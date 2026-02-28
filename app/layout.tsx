@@ -1,43 +1,47 @@
 import type { Metadata, Viewport } from 'next'
-import { Poppins, Inter, Open_Sans } from 'next/font/google'
-import { Analytics } from '@vercel/analytics/next'
+import { Poppins, Open_Sans } from 'next/font/google'
+import { LeadModalProvider } from '@/components/lead-modal-provider'
+import { BUSINESS_INFO } from '@/lib/constants/business'
 import './globals.css'
 
-const _poppins = Poppins({ subsets: ["latin"], weight: ["300", "400", "500", "600", "700", "800"], variable: "--font-poppins" });
-const _inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
+const _poppins = Poppins({ subsets: ["latin"], weight: ["400", "500", "600", "700", "800"], variable: "--font-poppins" });
 const _openSans = Open_Sans({ subsets: ["latin"], variable: "--font-open-sans" });
 
 const SITE_URL = "https://www.windowsplaza.in"
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.windowsplaza.in"),
   title: {
-    default: 'Windows Plaza | Premium uPVC & Aluminium Windows and Doors',
-    template: '%s | Windows Plaza',
+    default: 'Windows Plaza | uPVC Windows Manufacturer in Visakhapatnam',
+    template: '%s | Windows Plaza Vizag',
   },
-  description: 'Windows Plaza delivers premium uPVC and Aluminium Windows & Doors across India. Expert craftsmanship, energy-efficient solutions, 10-year warranty, and professional installation.',
+  description: 'Windows Plaza – Direct uPVC windows manufacturer in Visakhapatnam (Vizag). Sliding windows, casement windows, tilt & turn windows. Free site measurement, custom sizes, professional installation. A Unit of SP Builders and Traders (GST Registered).',
   keywords: [
-    'uPVC windows India',
-    'aluminium doors India',
-    'premium uPVC windows',
-    'aluminium sliding doors',
-    'uPVC casement windows',
-    'French doors India',
-    'double glazed windows',
-    'energy efficient windows',
-    'window installation India',
-    'aluminium windows supplier',
-    'uPVC doors supplier',
-    'windows plaza',
-    'premium windows and doors',
-    'soundproof windows',
-    'weatherproof windows India',
+    'uPVC windows Visakhapatnam',
+    'uPVC windows Vizag',
+    'sliding windows Vizag',
+    'casement windows Visakhapatnam',
+    'uPVC windows manufacturer Vizag',
+    'uPVC window installation Visakhapatnam',
+    'windows plaza Visakhapatnam',
+    'soundproof windows Vizag',
+    'dust resistant windows Visakhapatnam',
+    'energy efficient windows Vizag',
+    'tilt and turn windows Vizag',
+    'uPVC windows price Visakhapatnam',
+    'custom uPVC windows Vizag',
+    'SP Builders and Traders',
+    'windows Andhra Pradesh',
+    'Madhurawada uPVC windows',
+    'Bheemili windows',
+    'Anandapuram uPVC',
   ],
   alternates: {
     canonical: SITE_URL,
   },
   openGraph: {
-    title: 'Windows Plaza | Premium uPVC & Aluminium Windows and Doors',
-    description: 'Windows Plaza delivers premium uPVC and Aluminium Windows & Doors across India. Expert craftsmanship, energy-efficient solutions, and 10-year warranty.',
+    title: 'Windows Plaza | uPVC Windows Manufacturer in Visakhapatnam',
+    description: 'Direct uPVC windows manufacturer in Visakhapatnam. Premium sliding, casement & tilt-turn windows. Free site visit. A Unit of SP Builders and Traders (GST Registered).',
     url: SITE_URL,
     siteName: 'Windows Plaza',
     type: 'website',
@@ -45,8 +49,8 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Windows Plaza | Premium uPVC & Aluminium Windows and Doors',
-    description: 'Premium uPVC and Aluminium Windows & Doors across India. Expert installation, energy-efficient designs, and 10-year warranty.',
+    title: 'Windows Plaza | uPVC Windows Manufacturer in Visakhapatnam',
+    description: 'Direct uPVC windows manufacturer in Visakhapatnam. Free site measurement & custom sizes. Call now for factory pricing.',
   },
   robots: {
     index: true,
@@ -71,16 +75,26 @@ const localBusinessSchema = {
   "@context": "https://schema.org",
   "@type": "LocalBusiness",
   "@id": `${SITE_URL}/#localbusiness`,
-  name: "Windows Plaza",
-  description: "Windows Plaza is a premium supplier and installer of uPVC and Aluminium Windows & Doors across India. Known for quality craftsmanship, energy-efficient solutions, and professional installation.",
+  name: BUSINESS_INFO.brandName,
+  legalName: BUSINESS_INFO.parentCompany,
+  description: BUSINESS_INFO.description,
   url: SITE_URL,
-  telephone: "+91-9876543210",
-  email: "info@windowsplaza.in",
+  telephone: BUSINESS_INFO.phoneNumber,
+  email: BUSINESS_INFO.email,
   image: `${SITE_URL}/images/hero-windows.jpg`,
-  priceRange: "$$",
+  priceRange: "₹₹",
   address: {
     "@type": "PostalAddress",
+    streetAddress: "Rajula Tallavalasa, Near Thirumala College, Bheemunipatnam",
+    addressLocality: BUSINESS_INFO.location.city,
+    addressRegion: BUSINESS_INFO.location.state,
+    postalCode: "531162",
     addressCountry: "IN",
+  },
+  geo: {
+    "@type": "GeoCoordinates",
+    latitude: 17.6868,
+    longitude: 83.2185,
   },
   openingHoursSpecification: [
     {
@@ -96,18 +110,20 @@ const localBusinessSchema = {
       closes: "16:00",
     },
   ],
-  areaServed: {
-    "@type": "Country",
-    name: "India",
-  },
+  areaServed: [
+    { "@type": "City", name: "Visakhapatnam" },
+    { "@type": "City", name: "Bheemili" },
+    { "@type": "City", name: "Madhurawada" },
+    { "@type": "City", name: "Anandapuram" },
+  ],
   hasOfferCatalog: {
     "@type": "OfferCatalog",
-    name: "Windows & Doors",
+    name: "uPVC Windows",
     itemListElement: [
+      { "@type": "Offer", itemOffered: { "@type": "Product", name: "uPVC Sliding Windows" } },
       { "@type": "Offer", itemOffered: { "@type": "Product", name: "uPVC Casement Windows" } },
-      { "@type": "Offer", itemOffered: { "@type": "Product", name: "Aluminium Sliding Doors" } },
-      { "@type": "Offer", itemOffered: { "@type": "Product", name: "Sliding Windows" } },
-      { "@type": "Offer", itemOffered: { "@type": "Product", name: "French Doors" } },
+      { "@type": "Offer", itemOffered: { "@type": "Product", name: "uPVC Tilt & Turn Windows" } },
+      { "@type": "Offer", itemOffered: { "@type": "Product", name: "Fixed Glass & Vents" } },
     ],
   },
 }
@@ -126,9 +142,10 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessSchema) }}
         />
       </head>
-      <body className={`${_poppins.variable} ${_inter.variable} ${_openSans.variable} font-sans antialiased`}>
-        {children}
-        <Analytics />
+      <body className={`${_poppins.variable} ${_openSans.variable} font-sans antialiased`}>
+        <LeadModalProvider>
+          {children}
+        </LeadModalProvider>
       </body>
     </html>
   )

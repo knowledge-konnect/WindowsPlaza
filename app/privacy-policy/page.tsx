@@ -2,6 +2,7 @@ import type { Metadata } from "next"
 import Link from "next/link"
 import { ArrowLeft } from "lucide-react"
 import { Button } from "@/components/ui/button"
+import { BUSINESS_INFO } from "@/lib/constants/business"
 
 export const metadata: Metadata = {
   title: "Privacy Policy",
@@ -113,17 +114,17 @@ export default function PrivacyPolicyPage() {
               If you have any questions about this privacy policy or how we
               handle your personal information, please contact us at{" "}
               <a
-                href="mailto:info@windowsplaza.in"
+                href={`mailto:${BUSINESS_INFO.email}`}
                 className="font-medium text-primary underline underline-offset-2 hover:text-primary/80"
               >
-                info@windowsplaza.in
+                {BUSINESS_INFO.email}
               </a>{" "}
               or call us on{" "}
               <a
-                href="tel:+919876543210"
+                href={BUSINESS_INFO.phoneHref}
                 className="font-medium text-primary underline underline-offset-2 hover:text-primary/80"
               >
-                +91-9876543210
+                {BUSINESS_INFO.phoneNumber}
               </a>
               . Our showroom is located at 47-11-19, Dwaraka Nagar, Main Road,
               Visakhapatnam, Andhra Pradesh 530016.
